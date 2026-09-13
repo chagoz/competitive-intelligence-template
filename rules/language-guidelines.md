@@ -2,17 +2,23 @@
 
 *How every Competitive Intelligence document is written and formatted. Apply without exception.*
 
-*Last updated: August 19, 2026 · v2.1*
+*This file owns craft: voice, structure, formatting, the emoji system, inline markers, words to avoid. It does not own positioning. Which words carry the company's position, and how the company frames its own AI, live in `about-us.md`. The test: would a different company forking this system keep the rule? If yes, it is craft and belongs here. See the ownership rule in `README.md`.*
 
 ---
 
 ## PART 1, SYSTEM-WIDE
 
-*Applies to every document type: Weekly Digest, Flash Report, Quarterly Review, Competitor Profiles.*
+*Applies to every document type: Weekly Digest, Flash Report, Monthly page, Competitor Profiles.*
 
-### Audience pool
+### Audience
 
-The full readership across Competitive Intelligence outputs spans four groups: **C-level and management**, **Sustainability specialists and deeper experts**, **Product and Marketing**, and **general company readers** with less category fluency. No single document serves all four equally. Each document type states, in its own opening note, which slice of this pool it is written for and what that reader needs. That persona note lives at the top of each tier below, not here.
+Each document type states, in its own template, which readers it serves and what those readers need. **Who those readers are is self-knowledge and lives in `about-us.md`**, because a fork has different readers and should not inherit ours.
+
+Two craft rules follow from having more than one reader group, and they are general:
+
+**No single document serves every reader equally.** A document that tries to serve all of them serves none. State the slice.
+
+**Where two reader needs conflict, resolve it with a light touch rather than by splitting the document.** A first-use gloss satisfies a reader meeting a concept for the first time without slowing down a reader who already knows it.
 
 ### The Slack message rule
 
@@ -23,21 +29,28 @@ Good: "[Competitor A]'s own users just handed us two sales talking points. Read 
 
 No manufactured suspense. Short, driven, self-contained.
 
-### Symbol system, one symbol one meaning
+---
 
-**Every symbol used across every document type is defined once, here, and nowhere else.** A profile, a digest, a Flash Report, or any future document type all draw from this same table. If a section needs a symbol that isn't listed, add it here first, then use it, don't improvise one locally and let a future session guess at what it meant.
+### THE EMOJI SYSTEM
 
-| Symbol | Means | Used on |
+**One symbol, one meaning, across every document.** If a new section needs a symbol that is not on this list, add it to this list rather than borrowing one that is already in use.
+
+#### Section header emojis
+
+Every section header carries one.
+
+| Symbol | Means | Typical sections |
 |---|---|---|
-| 🔄 | What changed since last time | Changelog |
-| 🎯 | The headline, what to remember | Three things to remember, only this |
-| 🖼️ | The map, establishing terms before reporting | Strategy brief, vocabulary tables |
+| 🔄 | What changed since last time | Changelog since last scan |
+| 🎯 | The headline, what to remember | Three things to remember. **Only this.** |
+| 🗺️ | The map, establishing terms before reporting | Strategy brief, vocabulary table |
 | 🗣️ | Their words, Layer 1 | What they claim |
 | 🔧 | Verified evidence, Layer 2 | What they actually do, what users say |
-| 🕵️ | The gap between claim and evidence | Reality check |
-| ➖ | Market white space, where nobody is playing | Gap sections |
+| 🤷 | The gap between claim and evidence | Reality check |
+| 🕳️ | Market white space, where nobody is playing | Gap and opportunity sections |
+| 🌐 | The category rather than a company | Market lens |
 | 📈 | Dated log | Signal history |
-| 💚 | Our documented advantage | Our wins |
+| 💚 | Our documented advantage | Where we win |
 | ⚠️ | Our exposure, or where not to fight | Where they are ahead |
 | 🧭 | Where overlap sits and where it stops | Our angle, short-form profiles |
 | ⚡ | What would move a tier | Escalation trigger |
@@ -47,12 +60,49 @@ No manufactured suspense. Short, driven, self-contained.
 | 💥 | Competitor activity roundup | Competitor pulse, what is hot elsewhere |
 | 💪 | Opportunities | Content angles, sales and product signals |
 | 🔍 | Still open, still tracked | Follow-up tracker, open questions |
+| 🌲 | Seasonal edition marker | Summer or forest edition |
 
-**Inline markers, not headers:** 🔥 flame-level signal · 🔴 High 4-5, 🟡 Moderate 3, ⚪ Low 1-2 · 🗣️ Talk, 🔧 Implement (same symbols as above, same underlying meaning, self-reported vs verified) · 🚩 decision awaiting a human, ✅ decision closed · ✏️ correction after publication · 🗑️ retired.
+**On 🔍 and 💥, deliberately widened rather than split.** Follow-up tracker and Open questions are the same family, things still live. Competitor pulse and What is hot elsewhere are the same family, activity across competitors. One symbol each.
 
-**Two deliberate choices, worth keeping rather than splitting further:** 🔍 and 💥 each cover two labels (Follow-up tracker / Open questions, Competitor pulse / What is hot elsewhere), because those pairs are genuinely the same family of content, not two different things that happen to share a symbol. Origin tags stay as text, `[Self-declared]` and `[Independent, verified]`, never compressed into a glyph, that distinction carries too much weight to risk being misread.
+**🌐 added September 2026.** The market lens had no symbol, so an edition borrowed 🔴, which is an inline marker meaning high threat. A symbol carrying two meanings breaks the rule the whole visual language rests on.
 
-**Why this lives in Part 1 and not inside a specific document's section:** a rule scoped to one document type only governs that document type. This system was originally written inside the Weekly Digest section and, predictably, never applied anywhere else, competitor profiles and other document types improvised their own symbols with no rule to check against. Every template and structure document should cross-reference this table rather than define its own.
+#### Inline markers, mandatory and never skipped
+
+*This is the part most likely to get dropped under time pressure, and it is the part that carries the most reading value. A verdict without its marker is an unfinished verdict.*
+
+| Symbol | Means |
+|---|---|
+| 🔴 | High threat, 4 to 5 |
+| 🟡 | Moderate threat, 3 |
+| ⚪ | Low threat, 1 to 2 |
+| 🗣️ | Verdict: Talk, announced or claimed, nothing verified as shipped |
+| 🔧 | Verdict: Implement, verified as running or shipped |
+| 🔥 | Flame-level signal, the sharpest thing in the document |
+| 🚩 | Decision awaiting a human |
+| ✅ | Decision closed and recorded |
+| ✏️ | Correction made after publication |
+| 🗑️ | Retired or superseded |
+| ✅ | Certainty: Confirmed, high confidence regardless of origin |
+| 🟠 | Certainty: Reported, credible but not fully verified |
+| ◽ | Certainty: Inferred, our own read stated as opinion |
+
+**Where inline markers are required, without exception:**
+
+- Every **Verdict** cell in a claims table. Write `🗣️ Talk` or `🔧 Implement`, never the bare word.
+- Every **Verdict** line in a reality check gap block.
+- Every entry in a **Signal history**, on the talk or implement grade.
+- Every **two-axis score** wherever it is displayed. Format: `🔧 Implement · 🔴 High 5/5`. Both axes, both markers, always together.
+- Every **gate or decision** state, 🚩 open or ✅ closed.
+
+**One exemption, corporate events.** A Signal history row typed Funding, Acquisition, Partnership, Integration, Senior hire, Ownership change or Positioning has no talk-versus-implement state, so its Grade cell is left empty. An empty Grade on such a row is correct and complete, not an unfinished verdict. Every other row still carries its marker. Full definition: `analysis-rules.md` §2.5.
+
+**Never use an inline marker as a section header.** The threat circles in particular read as a score, and a reader who sees one in a heading will read the whole section as scored. If a section needs a symbol, take it from the section table above or add one.
+
+**Origin tags stay as text**, `[Self-declared]` and `[Independent, verified]`. Deliberately not symbols. That distinction carries too much weight to compress into a glyph a reader might misread at a glance.
+
+**Note on the databases.** Competitor Profiles carries Talk/Implement and Threat score as select properties whose chip colours already provide the visual coding in the table view. Do not duplicate the emoji into the select option names. Inline markers are for page bodies and documents, where there is no chip.
+
+---
 
 ### Notion formatting pre-flight
 
@@ -60,14 +110,15 @@ Run before writing any Notion content, no exceptions:
 
 - Grey italic on all subtitles and legend lines
 - "So what for us" / impact callouts use a blue callout, action-required icon
-- Two-axis scores always shown together, never collapsed
+- **Section header emoji on every header, from the table above. Never an inline marker.**
+- **Inline markers applied everywhere the list above requires them. Check this last, it is the one that gets skipped.**
+- Two-axis scores always shown together, never collapsed, both with markers
 - Source honesty tag on every Layer 2 claim, linked when available
 - Dates on every Layer 2 citation, no evidence presented as new without its date visible
-- OKR tags: blue inline text inside callouts, grey inline text outside callouts
+- OKR tags: blue inline text inside callouts, grey inline text outside. Max 3 per document.
 - Flame-level sentence: highlight the key sentence only
 - Quiet competitors: entire section in grey, no scoring, no bullets, one line
-- Section title symbols on every header, per the master symbol system above, never improvised locally
-- Visual language legend placed directly above any colour/symbol system, no exceptions
+- Visual language legend placed directly above any colour or symbol system, no exceptions
 - No em dashes anywhere, scan before saving
 - TOC block reminder, cannot be inserted via API in Notion
 
@@ -77,7 +128,7 @@ If any item is unchecked, the document is not finished.
 
 | Colour | Meaning | Used on |
 |---|---|---|
-| Blue callout | Impact / action | "So what for us" and Quarterly impact statements |
+| Blue callout | Impact / action | "So what for us" and monthly impact statements |
 | Blue inline text | OKR signal inside a callout | OKR tags inside blue callouts |
 | Grey inline text | Low urgency / meta | Subtitles, quiet sections, legends |
 | Yellow highlight | New signal, flag for attention | Key sentence, unverified flags |
@@ -86,17 +137,17 @@ If any item is unchecked, the document is not finished.
 
 Any table, matrix, or element using colour codes or symbols gets a grey italic legend directly above it, before the element, not below. Reading order: know the code, then read the table.
 
-Example score legend: Talk (announced, not shipped) · Implement (verified, shipped) · High (4-5) · Moderate (3) · Low (1-2)
+Example score legend: 🗣️ Talk (announced, not shipped) · 🔧 Implement (verified, shipped) · 🔴 High (4-5) · 🟡 Moderate (3) · ⚪ Low (1-2)
 
 Example source legend: Self-declared = competitor's own words · Independent, verified = third party with no incentive to favour them
 
-Example activity legend: Active this month · Minor signal · No activity · Direct threat to our positioning
-
 Apply this rule to: tables with emoji columns, scoring matrices, follow-up tracker status columns, any custom visual language introduced in a document.
+
+*One exception, the chip grammar in `competitor-profile-template.md`. Those chips are self-labelling, so a legend above them adds noise rather than clarity.*
 
 ### Recency filter
 
-Only evidence dated within the current research cycle presents as new. Older evidence stays in the standing profile, referenced, not repeated. Full rule: `analysis-rules.md` §2.1.
+Only evidence dated within the current research cycle presents as new. Older evidence stays in the standing profile, referenced, not repeated. Full rule: `analysis-rules.md` §2.1, including the corporate events exemption in §2.5.
 
 Bad: "Users report the setup is slow." (no date, reads as current)
 Good: "A March 2026 G2 review flagged setup speed. No newer reviews raise it."
@@ -106,7 +157,7 @@ Good: "A March 2026 G2 review flagged setup speed. No newer reviews raise it."
 Every claim tagged Self-declared (competitor's own words) or Independent, verified (third party, no incentive to favour them), dated, linked when available. Full rule: `analysis-rules.md` §2.2.
 
 Bad: "[Competitor A] delivers 180% ROI."
-Good: Self-declared, [Competitor A] website, citing an unlocated Verdantix study: "180% ROI, 8-month breakeven."
+Good: Self-declared, [Competitor A] website, citing an unlocated third-party study: "180% ROI, 8-month breakeven."
 
 ### Words to avoid
 
@@ -119,11 +170,12 @@ Good: Self-declared, [Competitor A] website, citing an unlocated Verdantix study
 | Empower | Name the concrete action |
 | Synergy | Avoid entirely |
 | AI-powered / AI-driven | Describe what the AI actually does |
-| Monitoring (with AI) | Identifies, surfaces, flags, screens |
 | Game-changer | Describe the actual change |
 | Leading (self-declared) | Use specific proof points |
 
 No em dashes. Anywhere. Ever.
+
+*Words whose meaning depends on the company's own position, and the rules governing them, live in `about-us.md`.*
 
 ### AI language
 
@@ -132,30 +184,22 @@ Describe what the AI does. Never echo competitor hype.
 Bad: "Their cutting-edge AI transforms compliance workflows."
 Good: "Their AI parses bills of materials and extracts material data."
 
+*This is craft, and it applies to writing about anyone's AI. How the company positions its own AI is a position, not craft, and lives in `about-us.md`.*
+
 ### Scoring system, two axes, always shown together
 
 Full model: `analysis-rules.md` §3.
 
-Axis 1, is it real? Talk (announced only) vs Implement (verified shipped).
-Axis 2, does it matter? High (4-5), Moderate (3), Low (1-2). Independent of Axis 1, a pure announcement can still be High if it strikes a core theme watch.
+Axis 1, is it real? 🗣️ Talk (announced only) vs 🔧 Implement (verified shipped).
+Axis 2, does it matter? 🔴 High (4-5), 🟡 Moderate (3), ⚪ Low (1-2). Independent of Axis 1, a pure announcement can still be High if it strikes a core theme watch.
 
-Always displayed together, never collapsed into one number.
-
-### OKR signal tags
-
-Max 3 per document. Signal relevance only, never assign team ownership.
+Always displayed together with both markers, never collapsed into one number.
 
 ---
 
 ## PART 2, WEEKLY DIGEST
 
-*Who this is for: three readers, each with a different failure mode.*
-
-**C-level and management.** Reads fast, needs proof and understanding in the same glance. Fails them if the point is buried under narrative, or a signal doesn't visibly stand out from routine noise.
-
-**Sustainability specialists and deeper experts.** Fine reading more, but organised by proof, not narrative. Fails them if a claim appears without its source and date, or gets oversimplified past what someone who already knows the category needs.
-
-**Product and Marketing.** Enthusiastic but scans rather than reads start to finish, parsing for opportunity. Fails them if the Opportunities section isn't visually distinct enough to catch a scanning eye, or a usable insight is buried inside a competitor paragraph instead of surfaced.
+*Reader slice: fast readers who need proof and understanding in the same glance, deeper experts who need the source and date on every claim, and scanners hunting for opportunity. Reader groups are defined in `about-us.md`.*
 
 ### Voice and structure
 
@@ -169,23 +213,14 @@ Plain regulation names. Every regulation gets a one-line plain language gloss on
 
 Short is the default. 100 words max per competitor section on a quiet week. Longer only for a direct threat.
 
-Enrichment, not repetition. References and acts on Reality Check findings, does not re-explain them at the same depth.
+Enrichment, not repetition. References and acts on reality check findings, does not re-explain them at the same depth.
 
 Bad: restating the full gap story at reality-check depth inside the digest.
-Good: "[Competitor A]'s two user-confirmed gaps (see Reality Check #1) are worth surfacing in sales conversations this week."
+Good: "[Competitor A]'s two user-confirmed gaps (see the August monthly page) are worth surfacing in sales conversations this week."
 
-### Section symbols, digest-specific subset
+### Section emojis
 
-*Drawn from the master symbol system in Part 1, this is which of those symbols apply to a Weekly Digest specifically, not a separate definition. If a digest needs a symbol not listed here, check Part 1 before inventing one.*
-
-| Section | Symbol |
-|---|---|
-| This week in AI | 🤖 |
-| Regulation watch | 📊 |
-| Follow-up tracker | 🔍 |
-| Competitor pulse | 💥 |
-| Opportunities | 💪 |
-| Summer / seasonal edition | 🌲 (one-off, not in the master table, this one is a seasonal exception rather than a recurring structural symbol) |
+Use the system-wide table in Part 1. The digest's standing sections map as follows: 🎯 Three things to remember · 🗺️ any vocabulary or map section · 🤖 This week in AI · 📊 Regulation watch · 🔍 Follow-up tracker · 💥 Competitor pulse · 💪 Opportunities · 🔍 Next week watch list · 🌲 seasonal editions.
 
 Section subtitles always grey italic.
 
@@ -195,21 +230,17 @@ Section subtitles always grey italic.
 ```
 ### [Company name]
 [Company] was [very active / active] in [period]. They mainly talked about [theme].
-Talk · High/Moderate/Low [score]/5  OR  Implement · High/Moderate/Low [score]/5
+🗣️ Talk · 🔴 High [score]/5   OR   🔧 Implement · 🟡 Moderate [score]/5
 [Bullet points, 3 max, each carrying a source honesty tag if citing Layer 2 evidence]
 ```
 
 **Quiet competitor:** entire section grey, one line: "No significant update in [period]."
 
-**Flame-level signal:** highlight the key sentence, then the "So what for us" callout.
+**Flame-level signal:** 🔥 marker, highlight the key sentence, then the "So what for us" callout.
 
 ### "So what for us" block
 
 Only on high-threat flagged signals. Fixed title, never varied. Blue callout, two to three sentences, OKR tag on the last line.
-
-### Competitor header table
-
-Two-row format only. Row 1: Category, Website, LinkedIn, AI-native, Tier rationale. Row 2: values. Never line-by-line key/value pairs.
 
 ### Closing
 
@@ -221,19 +252,15 @@ Each bullet: what they did plus what it means for us, one sentence. Second part 
 
 ### Flash Report
 
-When findings consolidate around one topic with direct business consequences, the edition is renamed a Flash Report rather than numbered. Keeps the Digest's speed and directness, still Slack-bound, but given the higher stakes, holds a slightly more measured tone, closer to "here's what we found and why it matters" than a routine quick take.
-
-Full section structure, the strategy brief rule, and the data-sufficiency gate for single-topic editions live in `flash-report-template.md`, not here. This paragraph covers when to use the format, that document covers how to build it.
+When findings consolidate around one topic with direct business consequences, the edition is renamed a Flash Report rather than numbered. Keeps the Digest's speed and directness, still Slack-bound, but given the higher stakes, holds a slightly more measured tone, closer to "here's what we found and why it matters" than a routine quick take. Full structure: `templates/flash-report-template.md`.
 
 ---
 
-## PART 3, QUARTERLY REVIEW
+## PART 3, THE MONTHLY PAGE
 
-*Who this is for: two readers.*
+*Reader slice: fast readers making a strategic read rather than a weekly pulse check, plus company-wide readers who may be meeting a concept for the first time. The proof bar is higher than the digest's. Reader groups are defined in `about-us.md`.*
 
-**C-level and management, primary.** Same fast-reading need as the Digest, but the proof bar is higher since this document justifies a strategic read, not a weekly pulse check.
-
-**Company-wide, secondary.** May be meeting a concept like a specific regulation or a Theme Watch for the first time. Needs a first-use gloss where the Digest can assume fluency. This sits in tension with the C-level need for density, a light glossary touch on first use resolves most of it without breaking the primary read.
+*Structure: `monthly-review-template.md`.*
 
 ### Voice, observation not instruction
 
@@ -251,17 +278,21 @@ Good: leading with the implication ("Two competitors are quietly repositioning a
 
 ### Altitude rule
 
-Every claim answers "what does this mean for the business or buyer," not "what does the feature do." If the sentence can't complete that in one clause, it stays in the tactical record instead.
+Every claim answers "what does this mean for the business or buyer," not "what does the feature do." If the sentence can't complete that in one clause, it stays in the working record instead.
 
 Bad: "No in-platform supplier dialogue."
 Good: "Buyers are asking for something we already offer and a Tier 1 competitor doesn't, worth confirming this is said explicitly in sales conversations."
 
 ### Data-sufficiency gate
 
-If there isn't enough Reality Check history for a genuine time comparison, don't stretch two points into a trend. Run a dedicated fresh search against the Theme Watch list itself, topic by topic, not company by company, to establish an honest current-state baseline instead.
+If there isn't enough reality check history for a genuine time comparison, don't stretch two points into a trend. Run a dedicated fresh search against the theme watch list itself, topic by topic, not company by company, to establish an honest current-state baseline instead.
 
-Bad: calling two Reality Checks a "four-month view."
-Good: "Two Reality Checks exist so far, not enough for a trend line. This section reflects a fresh baseline search instead."
+Bad: calling two reality checks a "four-month view."
+Good: "Two reality checks exist so far, not enough for a trend line. This section reflects a fresh baseline search instead."
+
+### Market lens voice
+
+Same observational register as the rest of Part 3. An observation drawn from the not-ours block of the matrix says so in the sentence. Never present a market theme as one of our theme watches.
 
 ### Opportunities section
 
@@ -269,5 +300,7 @@ Numbered, divider between each item. Team code-tag kept, decoupled from any dire
 
 ---
 
-*[Your name] x Claude · August 19, 2026 · v2.1*
-*v2.1 changes: added a single master symbol system to Part 1 (one symbol, one meaning, applies to every document type). Fixes a real drift, the previous symbol table lived only inside Part 2 (Weekly Digest), so it never governed Competitor Profiles or any other document type, each improvised its own vocabulary with nothing to check against. Part 2's table is now explicitly a subset of Part 1's, not a separate definition.*
+*[Your name] x Claude · September 4, 2026 · v5*
+*v5 changes: the audience pool moved out to About Us, since our readership is self-knowledge and a fork has different readers; the two craft rules that follow from having several readers stay here. 🌐 added for the market lens, after an edition borrowed the high-threat marker as a section header, with an explicit rule against reusing inline markers in headings. Corporate events exemption added to the inline marker list. Words to avoid and AI language now state that positioning-bearing vocabulary lives in About Us. Part 3 retitled from Quarterly Review to the monthly page and pointed at its template.*
+*v4 changes: certainty chips added to the inline-markers table.*
+*v3 changes: the emoji system moved from Part 2 to Part 1 so it governs every document type, and inline markers made an explicit mandatory pre-flight item.*

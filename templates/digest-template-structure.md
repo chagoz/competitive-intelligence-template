@@ -1,29 +1,48 @@
 # Digest Template Structure
 
-*The weekly digest page structure, section by section, with the reasoning behind each choice. Full formatting rules live in `language-guidelines.md`, Part 1 (system-wide, including the master symbol system) and Part 2 (Weekly Digest specifics). This document is the structural skeleton.*
-
-*Last updated: August 19, 2026 · v1.1*
+*The weekly digest page structure, section by section, with the reasoning behind each choice. Full formatting rules, the emoji system and the mandatory inline markers live in `language-guidelines.md`, Part 1 for system-wide and Part 2 for digest-specific voice. This document is the structural skeleton.*
 
 ---
 
 ## Page title
 
-`Competitive Intelligence Digest #[N] · [Date]`
+`Competitive Intelligence Digest #[N], [Date]`
 
-## Section order
+*No em dashes, including in titles. Earlier digests used one and predate the rule.*
 
-1. **Opening subtitle**, one line, grey italic, contextual emoji matching the week's theme.
-2. **🎯 3 things to remember**, the confirmed top 3 from the editorial gate. Not a summary of everything below, a genuine top 3.
-3. **🤖 This week in AI**, AI-specific moves across all tiers, cross-cutting theme, scanned regardless of tier.
-4. **📊 Regulation watch**, regulatory developments, plain-language gloss on first mention of any regulation name.
-5. **🔍 Follow-up tracker**, status update on prior weeks' escalating or open signals. Escalating, Still open, or Resolved.
-6. **💥 Competitor pulse**, tier-by-tier competitor sections, active/quiet/flame-level format per `language-guidelines.md` Part 2.
-7. **💪 Opportunities**, split into Content angles (Marketing) and Sales and product signals (Sales/Product). Visually distinct, this is what the scanning reader is looking for.
-8. **🔍 Next week watch list**, open threads worth checking next cycle, same symbol as Follow-up tracker, same underlying family, still-open items.
-9. **Two closing lines**, grey italic, contextual, chosen per the Slack Message Template's three-register rotation.
-10. **Credits line**, who ran the digest, when.
+## Section order, with headers
 
-Every symbol above is defined once in `language-guidelines.md` Part 1, not redefined here. If a past edition is missing a symbol on one of these sections, that edition drifted from this structure, correct it forward, don't treat the drift as a new pattern to match.
+| # | Section | Header |
+|---|---|---|
+| 1 | Opening subtitle | One line, grey italic, contextual emoji matching the week's theme |
+| 2 | Three things to remember | `## 🎯 Three things to remember` |
+| 3 | This week in AI | `## 🤖 This week in AI` |
+| 4 | Regulation watch | `## 📊 Regulation watch` |
+| 5 | Follow-up tracker | `## 🔍 Follow-up tracker` |
+| 6 | Competitor pulse | `## 💥 Competitor pulse` |
+| 7 | Opportunities | `## 💪 Opportunities` |
+| 8 | Next week watch list | `## 🔍 Next week watch list` |
+| 9 | Two closing lines | Grey italic |
+| 10 | Credits line | Grey italic |
+
+Seasonal editions add 🌲 to the opening subtitle rather than replacing a section header.
+
+**Not every watch list topic gets its own section.** Topics 1 and 2 do, This week in AI and Regulation watch, because they are genuinely cross-cutting and company-agnostic, a reader shouldn't have to hunt through Competitor pulse to find them. Topics 3 and 4 (`watch-list.md`) are different in kind: a positioning shift or a friction removal is inherently about one company, so a finding surfaces naturally in that company's Competitor pulse entry, or in Three things to remember or Opportunities if it's strong enough to earn a slot. The topic pass still runs all four every week, per the digest skill's Step 3, this is about where a finding lands once found, not whether it gets looked for. Add a dedicated section only if a topic's findings start being genuinely cross-cutting rather than company-attributable.
+
+**Section 2 is exactly three items and is called Three things to remember.** Not two, not four, and not renamed. If a quiet week genuinely yields only two, that is a signal about the week worth stating in the subtitle, not a reason to change the section.
+
+**Section 4 is called Regulation watch.** Not Legislation watch. One name, so it is findable across editions.
+
+## Inline markers, mandatory
+
+*From `language-guidelines.md` Part 1. The single most commonly skipped part of the format.*
+
+- Every competitor entry in the pulse carries both axes with both markers: `🔧 Implement · 🔴 High 4/5`.
+- Every Follow-up tracker row carries its status and, where a verdict moved, the marker that moved.
+- 🔥 on the sharpest signal of the week, highlighted sentence, followed by the So what for us callout.
+- Quiet competitors get one grey line and no markers at all, because there is nothing to score.
+
+A score written without its markers is unfinished. Check this last, before saving.
 
 ## Reasoning behind the order
 
@@ -31,12 +50,18 @@ Top 3 first because the fast reader (C-level) may read nothing else. AI and Regu
 
 ## What reads from what
 
-- `language-guidelines.md` for all formatting and voice rules (Part 1 system-wide, Part 2 Weekly Digest)
+- `language-guidelines.md` Part 1 for the emoji system, inline markers and all formatting. Part 2 for digest voice.
 - `analysis-rules.md` for scoring, tier criteria, and the editorial gate
 - The previous digest's follow-up tracker, to update status
-- The latest Reality Check output, referenced and enriched, not restated in full
+- The latest monthly page, referenced and enriched, not restated in full
+- The Competitor Profiles database, read rather than re-researched, and updated in the same session per the always-true rule
+
+## When this is not the right shape
+
+If findings consolidate around one topic with direct business consequences, this shape buries the point across eight sections. Use `templates/flash-report-template.md` instead.
 
 ---
 
-*[Your name] x Claude · August 19, 2026 · v1.1*
-*v1.1 changes: symbols added to the section list, cross-referenced to the master symbol system in language-guidelines.md Part 1 instead of implying this document defines its own.*
+*[Your name] x Claude · September 13, 2026 · v3*
+*v3 changes: added a note on where Topic 3 and 4 findings land, since `watch-list.md` grew to four topics after this document was last touched and only two of them had a named section. "Reality Check output" corrected to "the monthly page," the older document type this file hadn't caught up to. Header stamp removed, this file carried both a header and a footer stamp, the exact drift the one-stamp rule was written to stop.*
+*v2 changes: emoji headers specified per section, which they previously were not in this document. Inline markers written in as mandatory. Section names fixed to one canonical form each after digest #9 drifted on two of them.*

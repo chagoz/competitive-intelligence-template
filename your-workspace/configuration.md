@@ -1,28 +1,24 @@
 # Configuration
 
-*Workspace-specific values every skill reads before running. This file is empty the first time any skill runs in a new Notion connection. The setup skill searches for each item below by the name you confirm, shows what it found, and asks for confirmation before writing anything here. Once confirmed, later runs just read this file, no repeated searching or asking.*
+*Workspace-specific values every skill reads before running. Confirmed once per Notion connection, then read, never re-searched. No page IDs recorded here on purpose, titles only, so the system stays portable across Notion workspaces.*
 
-*Fill this in during setup, most of it gets filled in for you as you answer the setup skill's questions, this is the record of what got confirmed.*
+*Nothing here gets written by a skill. Project knowledge is read-only at runtime, so a skill that finds a mismatch reports the delta and asks you to update this file by hand. That's deliberate: a configuration change is always visible to a person, never silent.*
 
 ---
 
 ## Setup Progress
 
-*Read and update this section every time the setup skill runs. It tracks which of the five setup steps are done, so a re-run resumes from the right place instead of redoing finished work or skipping ahead of unfinished work.*
-
 | Step | Status | Notes |
 |---|---|---|
 | 1. Read existing files | Not started | |
-| 2. Build file infrastructure | Not started | |
-| 3. Content (About Us, Competitor List, Watch List, Language Guidelines) | Not started | |
+| 2. Build Notion structure | Not started | |
+| 3. Content (About Us, Competitor List, Watch List) | Not started | |
 | 4. First competitor evidence batch | Not started | |
 | 5. Suggest cadence, walk through scheduling | Not started | |
 
 ---
 
-## Notion, pages and databases the skills search for by title
-
-*Type and Status get filled in during setup. Until then, treat every item below as unconfirmed.*
+## Notion
 
 **Competitive Intelligence home page (title to search):**
 **Type:** Markdown page
@@ -39,32 +35,62 @@
 **Digest Impact Tracker database (title to search):**
 **Type:** Database
 **Status:** unconfirmed
+*If you want to track what a digest caused, not just whether it was read, you'll also want a Digest Actions database, a relation between the two. See the setup skill for the full shape of both, it's worth building even though it's more schema than the minimum.*
+
+**Digest Actions database (title to search, optional but recommended):**
+**Type:** Database
+**Status:** unconfirmed
 
 **Evidence Registry database (title to search):**
 **Type:** Database
 **Status:** unconfirmed
-*Live-maintained by the skills (Competitor Profile Setup adds to it, Monthly Reality Check updates "last checked" dates), not a static Project knowledge file. A template version showing its shape exists in Project knowledge as evidence-registry.md, but the working copy lives in Notion once built.*
+*Live-maintained by the skills, not a static file. `templates/evidence-registry.md` defines the source types, this database holds the actual addresses.*
+
+**Flash Report Template page (if mirroring it into Notion):**
+*If you keep a Notion copy of any template alongside the Project knowledge one, both must be updated together, or they will drift. This has happened in real use, worth taking seriously rather than as a theoretical risk.*
+
+**Monthly page:** one page per month, titled `Monthly Competitor Review, [month] [year]`
 
 ---
 
 ## Slack
 
-**Channel for digest posts:**
+**Default channel for digest posts:**
 **Status:** not configured
-*If not configured, the skill drafts the post and asks where to send it instead of posting.*
+*Channel choice can be editorial and vary by edition if you want that flexibility, in which case track which channel each post actually went to rather than assuming the default every time.*
 
 ---
 
-## HubSpot
+## HubSpot (or your CRM)
 
 **Status:** not configured
 
 **Lost-deal reason field (structured):**
 **Lost-deal reason field (free text):**
-**Activity objects to query:** meetings and calls, both, summed together
+**Activity objects to query:**
 **Activity type values that count:**
 
-*If HubSpot isn't connected, or these fields aren't set, Monthly Reality Check runs without the lost-deal pull and says so in its output rather than failing.*
+*If activity-type data is inconsistently entered in your CRM, expect a large "unassigned" bucket. Report it as a floor, not a count, and decide whether the section is worth including until data discipline improves, rather than presenting an unreliable number as precise.*
+
+*If not configured, or if a field mismatch is found, the reality check skill runs without the lost-deal pull and says so explicitly, rather than failing the whole run.*
+
+---
+
+## External sources
+
+*Anything your category needs watched that isn't a competitor-by-competitor scan, a regulatory tracker, an industry index, a standards body's own feed. One saved search or feed per tracked item beats relying on a person to notice manually.*
+
+---
+
+## Scheduled tasks
+
+| Task | Cadence | Notes |
+|---|---|---|
+| | | |
+
+*If you split a cadence skill into a research pass and a separate write pass in the same conversation thread (recommended once you're running this regularly, since a writing rule read hours before it's applied tends to get dropped), record both halves here, not just one, and note which day each runs.*
+
+*Cron schedules are typically evaluated in UTC. If your local timezone observes daylight saving, note here when the actual local time will shift, so a "same time every week" assumption doesn't quietly become an hour off.*
 
 ---
 

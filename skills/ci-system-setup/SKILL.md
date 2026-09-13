@@ -1,124 +1,133 @@
 ---
 name: ci-system-setup
-description: "Five-step setup and repair flow for the competitive intelligence system: check what exists, build the Notion structure, collect company/watch-list content, run the first competitor evidence batch, then suggest and walk through Cowork scheduling for the recurring skills. Each step is skippable if already done, tracked in configuration.md, so this is safe to re-run at any point without redoing finished work. Trigger phrases: 'set up competitive intelligence system', 'build notion workspace', 'run workspace init', 'continue setup'."
+description: "Setup skill, two phases. Phase 1, content: asks who the company is, competitors, watch list topics, and voice, then writes About Us, Competitor List, Watch List, and Language Guidelines, only for a genuinely new setup with no existing content, skipped automatically when these already exist (as they do for your company). Phase 2, architecture: checks whether the five required Notion pages and databases exist, and for any that don't, shows the proposed shape and builds it blank once confirmed. Never adds competitor data or digest content, that's the other skills' job. Trigger phrases: 'set up competitive intelligence system', 'build notion workspace', 'run workspace init'. Phase 1 runs once per company. Phase 2 is safe to re-run any time."
 ---
 
 # Competitive Intelligence System Setup
 
-*One skill, five steps, run in order. Each step checks whether it's already done before doing anything, so this is safe to re-run any time, whether that's resuming an interrupted setup or repairing one piece that broke later. Progress is tracked in `configuration.md`, under Setup Progress, always read and update that section first.*
+*Two distinct jobs in one skill: getting the content right (who you are, competitors, watch list, voice) and getting the Notion structure right (the pages and databases everything else reads and writes to). A brand new fork usually needs both, in order. An already-populated workspace only needs the second.*
 
 ## Status
 
-**Mode:** ad hoc. Steps 1-2 run once per new Notion connection. Step 3 runs once per company, skipped automatically if content already exists. Steps 4-5 can each be re-run independently later, step 4 to add more competitors, step 5 to adjust cadence.
-**Human gate:** every question in step 3 is asked, never assumed. Every item step 2 proposes to build gets shown and confirmed before creation. Step 4 never runs research without being told which competitors. Step 5 never creates a scheduled task itself, it walks the user through creating it.
+**Mode:** Phase 1 runs once, only when needed. Phase 2 runs once per new Notion connection, and is safe to re-run any time after that.
+**Human gate:** every question in Phase 1 is asked, never assumed. Every item Phase 2 proposes to build gets shown and confirmed before creation, even on a re-run.
 
 ---
 
-## Before anything, read `configuration.md`'s Setup Progress section
+## Step 0, decide which phase to run
 
-It records which of the five steps are done, in progress, or not started. Start from the first incomplete step, don't restart finished ones, and don't skip ahead past an incomplete one, each step depends on the one before it actually being done, not just claimed to be done.
+Before asking anything, check whether `about-us.md`, `competitor-list.md` and `watch-list.md` already exist in Project knowledge with real, specific content, not placeholders.
 
----
+**If they exist with real content** (your company's case): skip Phase 1 entirely, say so plainly, and go directly to Phase 2.
 
-## STEP 1, Read existing files
+**If they do not exist, or are template shells:** run Phase 1 first, then Phase 2 once Phase 1's output is confirmed.
 
-Check three things and report back plainly before moving on:
-
-1. **Project knowledge content.** Does `about-us.md`, `competitor-list.md`, and `watch-list.md` already exist with real, specific content, not placeholder templates?
-2. **Notion structure.** Search for each of the five items listed in `configuration.md` (Competitive Intelligence home, Competitor Profiles, Competitor Employee List, Digest Impact Tracker, Evidence Registry). Note found, missing, or found-but-wrong-type for each.
-3. **Connectors.** Confirm Notion is connected and can be searched. Confirm Slack is connected if a channel is set in `configuration.md`. Confirm HubSpot is connected if fields are set in `configuration.md`.
-
-Write the result to Setup Progress in `configuration.md` before moving to step 2. This step never creates or writes anything except that status update.
+Never run Phase 1 "just in case." Asking someone to re-answer who their company is when that document already exists and is correct is exactly the friction this check avoids.
 
 ---
 
-## STEP 2, Build file infrastructure
+## PHASE 1, content
 
-*Runs after step 1, regardless of whether content exists yet. Test the plumbing before spending time on content questions, a broken connector should fail here, fast, not four questions into step 3.*
-
-**Is:** structure only. Creates whichever of the five required Notion items step 1 found missing, blank, matching the shapes below. Writes confirmed titles back to `configuration.md`.
-
-**Isn't:** content. Never adds a competitor, a digest, an evidence source, or any row of real data. That's step 4, and it's a separate hand-off, not something this step does itself.
-
-### The five items, checked one at a time
-
-For each item step 1 found missing: show the proposed shape and wait for confirmation before creating it. For each item step 1 already found: confirm it matches the expected type and move on, don't touch it.
-
-**1. Competitive Intelligence home page**
-Type: Markdown page. Shape if creating: a hub page with a short description and placeholder links to the four items below.
-
-**2. Competitor Profiles**
-Type: Database. Shape if creating, propose these fields, wait for confirmation before creating:
-Name (title) · Category (text) · Website (URL) · LinkedIn (URL) · AI-native (checkbox) · Tier (select: 1-5) · Tier rationale (text) · Talk/Implement (select) · Threat score (select: 1-5) · Last updated (date) · Tracked Employees (relation to Competitor Employee List)
-
-Zero rows on creation. The tables inside each competitor's row, What they claim, What they actually do, Signal history, are page content written per-row later by step 4 and Monthly Reality Check, not database fields, don't try to model them as properties.
-
-If an old page or database with a similar name already exists: leave it exactly as it is, don't open it, don't read it, don't archive it. Create the new database alongside it and record the new one's title in `configuration.md`. Flag the old item's existence in the output so the user knows it's there, but do nothing to it.
-
-**3. Competitor Employee List**
-Type: Database. Shape if creating: Name (title) · Company (relation to Competitor Profiles) · Role (text) · Seniority score (select: 1-3) · LinkedIn activity score (select: 1-3) · Combined score (formula or number) · LinkedIn URL (URL) · Last reviewed (date). Zero rows on creation.
-
-**4. Digest Impact Tracker**
-Type: Database. Shape if creating: Digest (title) · Date posted (date) · Total reactions (number) · Emoji breakdown (text) · Thread replies (number) · Notion views 24h (number) · Notion views 1 week (number) · Link to digest (URL). Zero rows on creation.
-
-**5. Evidence Registry**
-Type: Database. Shape if creating: Company (relation to Competitor Profiles) · Source type (select: Help center, G2, Capterra, TrustRadius, Careers/Job board, Press/Newsroom, LinkedIn, Product pages, Pricing page) · URL (URL) · Priority (select: Critical, High, Medium) · Check frequency (select: Weekly, Monthly) · Last checked (date) · Notes (text). Zero rows on creation.
-
-### Confirmation flow, for every item being created
-
-1. Show the item's proposed type and full field list.
-2. Wait for explicit confirmation. Never create on an assumption, even if the shape is copied directly from a template file.
-3. On confirmation, create it blank.
-4. Write its confirmed title, type, and status back into `configuration.md`.
-5. Move to the next item. Don't batch-confirm all five at once unless explicitly asked to.
-
-**End of step 2:** update Setup Progress in `configuration.md`. Do not proceed to step 3 until every item is either confirmed-existing or confirmed-created, an incomplete step 2 means step 4's research has nowhere reliable to write.
-
----
-
-## STEP 3, Content
-
-*Skipped automatically if step 1 already found real content in `about-us.md`, `competitor-list.md`, and `watch-list.md`, an already-established practice's case. Runs in full for a genuinely new setup.*
+*Only runs per Step 0.*
 
 ### The four setup questions, asked in sequence
 
-1. **Who is your company?** Category, value drivers, differentiators, ICP, priorities. Populates About Us. Do not proceed to question 2 until this is answered, tier reasoning downstream depends on knowing what the company competes on.
-2. **Who are your competitors, organised by tier?** Ask what "Tier 1" means for their business specifically (the reference definition is "we have lost deals to them, or they are named by prospects", check whether that gate-keeper rule fits their business or needs adapting). Populates the tier list.
-3. **What are your watch list topics?** Two to four topic areas maximum, more creates noise. Ask what the primary competitive battleground is right now, and what external forces most affect buyers. Populates the watch list.
-4. **What is your language or copy reference?** Existing brand voice docs, tone examples, words to avoid. If nothing exists yet, offer to derive a starting point from a few examples of content already liked. Populates language guidelines.
+1. **Who is your company?** Category, value drivers, differentiators, ICP, priorities, and the theme watches, the dimensions along which a competitor move becomes strategically relevant. Do not proceed until this is answered; everything downstream scores against it.
+2. **Who are your competitors, organised by tier?** Ask what Tier 1 means for their business specifically. The reference definition is "we have lost deals to them, or they are named by prospects in active evaluations". Check whether that gate-keeper rule fits or needs adapting. Note that Tier 5 is the platforms their category sits on rather than a competitor set.
+3. **What are your watch list topics?** Two to four maximum, more creates noise. Ask what the primary competitive battleground is right now, and what external forces most affect their buyers. Ask each topic to state its own noise floor.
+4. **What is your language or copy reference?** Existing brand voice docs, tone examples, words to avoid. If they have nothing, offer to derive a starting point from content they already like.
 
-### Step 3 output
+### Phase 1 output
 
-Four new reference documents, written in the structure of the existing templates but populated entirely with the user's answers, never with your company's content as a default or placeholder.
+Four new reference documents, written in the structure of the existing templates but populated entirely with the new user's answers, never with your company's content as a default or placeholder.
 
-**End of step 3:** update Setup Progress. Does not guess at any answer to save time, does not run again once these documents exist and are confirmed.
+**Point them at the ownership rule in `README.md`.** Positioning belongs to About Us, craft belongs to Language Guidelines. A copy in two files is how the two versions start.
 
----
+### What Phase 1 does not do
 
-## STEP 4, First competitor evidence batch
-
-*Hand-off, not a rebuild. This step does not do competitor research itself, that's Competitor Profile Setup's job. This step prompts, scopes, and delegates.*
-
-Once step 2's structure exists and step 3's competitor list is available (either freshly written or already existing): show the Tier 1 list and ask whether to run Competitor Profile Setup now, on the full Tier 1 list, or on a smaller first batch the user picks. **Never assume the full list, always ask, skipping this step silently is the most common way this setup goes wrong, structure gets built but no data ever gets requested, so be explicit here rather than defaulting quietly.**
-
-For each competitor confirmed: trigger Competitor Profile Setup, which does the actual scanning, scoring, and Evidence Registry population. This step's job ends at the hand-off and confirming the batch completed, everything downstream, digests, reality checks, missions, reads from what Competitor Profile Setup writes here.
-
-**End of step 4:** update Setup Progress with which competitors have been processed. This step can be re-run later for any competitor not yet covered, it doesn't have to happen all at once.
+Does not guess any answer to speed setup up. Does not copy your company's competitors, watch list or voice into a new user's docs. Does not run again once these documents exist.
 
 ---
 
-## STEP 5, Suggest cadence, walk through scheduling
+## PHASE 2, architecture
 
-*Only after steps 1-4 are far enough along that running the recurring skills would actually produce something real, at minimum step 2 done and at least one competitor processed in step 4.*
+*Structure only, never content.*
 
-Suggest cadences based on what's already defined: Weekly Digest, weekly, matching the day noted in `weekly-digest`'s SKILL.md. Monthly Reality Check, monthly, first week, covering the previous calendar month. Ask if these fit or if the user wants different timing.
+**Is:** checks for six required Notion items, creates whichever are missing, blank, matching the shapes below. Reports their titles so the human can record them in `configuration.md`.
 
-**This step does not create the scheduled task itself.** Walk the user through doing it: open Cowork, use the Scheduled tab or `/schedule` in a session, select the skill and the cadence just agreed on, confirm. Go one skill at a time, don't rush through both at once, this is also how the user discovers what the system can do on a recurring basis, not just a mechanical setup step.
+**Isn't:** content. This phase never adds a competitor, a digest, an evidence source, or any row of real data.
 
-**End of step 5:** update Setup Progress to reflect which recurring tasks are now scheduled. This step can be revisited any time cadence needs to change.
+**Safe to re-run.** Every check looks for what already exists before proposing to create anything.
+
+**Does not write `configuration.md`.** Project knowledge is read-only at runtime. Report what was found or created and ask the human to update the file. **No skill configures itself.**
+
+### Before this phase
+
+Read `configuration.md`, plus the shape references: `competitor-profile-template.md`, `evidence-registry.md`, `skills-index.md`.
+
+### The six items, checked one at a time
+
+For each: search Notion for the title given in `configuration.md`. If found, confirm it matches the expected type and move on. Do not touch it, do not migrate or merge anything into it, even if an old or oddly-named version exists alongside. If not found, show the proposed shape and wait for confirmation before creating.
+
+**1. Competitive Intelligence home page**
+Type: page. Shape if creating: a hub page with a short description and placeholder links to the four items below.
+
+**2. Competitor Profiles**
+Type: database. Propose these properties, wait for confirmation:
+Name (title) · Category (text) · Website (URL) · LinkedIn (URL) · AI-native (checkbox) · Tier (select: 1-5) · Tier rationale (text) · Talk/Implement (select) · Threat score (select: 1-5) · Last updated (date) · Tracked Employees (relation to Competitor Employee List)
+
+Zero rows on creation. The tables inside each row, What they claim, What they actually do, Signal history, are page content written per-row by Competitor Profile Setup and the Monthly Reality Check. Do not model them as properties.
+
+**3. Competitor Employee List**
+Type: database. Shape: Name (title) · Company (relation to Competitor Profiles) · Role (text) · Seniority score (select: 1-3) · LinkedIn activity score (select: 1-3) · Combined score (formula or number) · LinkedIn URL (URL) · Last reviewed (date). Zero rows.
+
+**4. Digest Impact Tracker**
+Type: database. Shape: Digest (title) · Date posted (date) · Channel (text) · Link to digest (URL) · Slack message link (URL) · Total reactions (number) · Reactions 24h (number) · Reactions 1 week (number) · Emoji breakdown (text) · Reactors (text) · Thread replies (number) · Total page comments (number) · Page comments 24h (number) · Page comments 1 week (number) · Commenters (text) · Notion views 24h (number) · Notion views 1 week (number) · Measurement status (select: Awaiting 24h, Awaiting 1 week, Complete, No Slack link) · Actions (relation to Digest Actions). Zero rows.
+
+*Channel is not optional. Channel choice is editorial and varies by edition, so engagement cannot be read without knowing where a post actually went.*
+
+*Measurement status drives the sweep and is not decoration. Awaiting 24h is set when a row is created. No Slack link is a designed failure path, not an error state.*
+
+*Reactors and Commenters hold names as text. They exist so a segment read is possible by eye without the system holding a segment table, which would be one company's org chart living inside a forkable system.*
+
+*Only two fields cannot be filled by API: the two Notion view counts. Everything else, including page comments and commenters, is machine-readable. Do not describe the whole tracker as manual.*
+
+**5. Digest Actions**
+Type: database. Shape: Action (title) · Type (select: Commitment, Request, Question, Correction) · Surface (select: Notion page comment, Slack thread, Slack DM, Meeting) · Section (text) · Person (person) · Raised (date) · Link (URL) · Status (select: Open, In progress, Landed, Dropped) · Outcome (text) · Digest (relation to Digest Impact Tracker). Zero rows.
+
+*This is the database that answers what the digest caused, which engagement counts cannot. It was missing from this skill until September 8, 2026, so a fork would have inherited a measurement layer that could count attention and never record a consequence.*
+
+*Status and Outcome are human entry only, by design. No automation can know whether the work happened, and no future session should infer either from activity elsewhere.*
+
+*Section anchors an action to a block of the digest. It is the field that answers whether the digest is getting better, rather than whether it is being read.*
+
+*Surface includes Slack DM and Meeting deliberately. That is where the response usually happens, and neither is machine-readable, so rows are added by hand. An empty table is a finding about the habit, not about the digest.*
+
+**6. Evidence Registry**
+Type: database. Shape: Company (relation to Competitor Profiles) · Source type (select: Help centre, G2, Capterra, TrustRadius, Careers/Job board, Press/Newsroom, LinkedIn, Product pages, Pricing page, Positioning descriptor, Review-site category, Public company register, Analyst coverage, Supplier-facing surface) · **Source URL** (URL) · Priority (select: Critical, High, Medium) · Check frequency (select: Weekly, Monthly, Quarterly) · Last checked (date) · Notes (text). Zero rows.
+
+*The URL field is named **Source URL**, not URL. Notion treats a property literally named URL as reserved and requires a prefix on every write. This is a known defect; do not recreate it.*
+
+If an old page or database with a similar name already exists: leave it exactly as it is. Create the new one alongside and flag the old item's existence in your output, but do nothing to it.
+
+### Confirmation flow, per item
+
+1. Show the proposed type and full field list.
+2. Wait for explicit confirmation. Never create on an assumption, even when the shape is copied from a template file.
+3. On confirmation, create it blank.
+4. Report its title and type so the human can record it in `configuration.md`.
+5. Move to the next item. Do not batch-confirm all six unless explicitly asked.
+
+### Phase 2 output
+
+A short status table: item, found or created, type, any old or stray item flagged for awareness but left untouched. Plus the list of values the human needs to add to `configuration.md`. Nothing else.
+
+### What Phase 2 does not do
+
+Does not touch, read, merge into, or archive any existing page or database, even one that looks like an old version of what it is building. Does not add any content or row. Does not skip confirmation, even on a re-run. Does not write `configuration.md`.
 
 ---
 
-## What this skill never does, any step
+## What this skill never does, either phase
 
-Does not run on a schedule itself. Does not guess at content to save time. Does not touch existing Notion items it wasn't asked to build. Does not write competitor data or digest content directly, step 4 delegates that. Does not create a Cowork scheduled task on the user's behalf, step 5 walks them through it instead.
+Does not run on a schedule. Does not guess at content to save time. Does not touch existing Notion items it was not asked to build. Does not write competitor data, digest content, or any row-level information. That boundary is what keeps this skill safe to re-run.

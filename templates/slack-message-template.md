@@ -1,15 +1,13 @@
 # Slack Message Template
 
-*How weekly digest findings get distributed to Slack so people actually read them.*
-
-*Last updated: August 13, 2026*
+*How weekly digest and monthly page findings get distributed to Slack so people actually read them.*
 
 ---
 
 ## Fixed structure
 
 ```
-📡 Weekly Competitor Digest #[N] · [Date]
+📡 Weekly Competitor Digest #[N], [Date]
 
 1. [Takeaway]
 2. [Takeaway]
@@ -55,4 +53,5 @@ Track total reactions with emoji breakdown, thread reply count, and Notion view 
 
 ---
 
-*[Your name] x Claude · August 13, 2026*
+*[Your name] x Claude · September 13, 2026 · v2*
+*v2 changes: the fixed-structure example itself used an em dash, two sections above this file's own no-em-dash rule. Corrected, and the title format brought in line with the comma convention used everywhere else since. Version stamp added, this file had none and had gone untouched since August 13, the oldest of the reference files by three weeks.*
