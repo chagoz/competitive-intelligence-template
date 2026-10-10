@@ -1,6 +1,6 @@
 ---
 name: competitive-weekly-digest
-description: "Runs your company's weekly competitive intelligence digest across two runs in one conversation: a research and scoring pass that stops at the user's gate, and a later write pass that produces the Notion page and 3 Slack post options, then logs analytics after posting. Also decides when findings warrant a Flash Report instead. Trigger phrases: 'run competitive digest', 'run this week's digest', 'weekly digest for [week]'. The research pass runs as a scheduled task on the cadence recorded in configuration.md, and ad hoc when triggered."
+description: "Runs your company's weekly competitive intelligence digest across two runs in one conversation: a research and scoring pass that stops at the user's gate, and a later write pass that produces the Notion page and 3 Slack post options, then logs analytics after posting. Also decides when findings warrant a Flash Report instead. Trigger phrases: 'run competitive digest', 'run this week's digest', 'weekly digest for [week]', 'what moved in our market this week?'. The research pass runs as a scheduled task on the cadence recorded in configuration.md, and ad hoc when triggered."
 ---
 
 # Weekly Competitive Digest
