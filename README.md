@@ -4,6 +4,10 @@ A complete, self-contained competitive intelligence system, methodology, templat
 
 Version history: [`CHANGELOG.md`](CHANGELOG.md). The reasoning behind the biggest structural decisions, including what was tried and reversed: [`docs/rework-method-sept-2026.md`](docs/rework-method-sept-2026.md).
 
+![A 35-second walkthrough: someone asks what moved in their market this week, picks the three signals that matter, the digest is shared with the team, and the competitor profiles update themselves](docs/media/groundline-teaser.gif)
+
+*Demo with fictional data. Groundline and every company shown are invented; the EU regulation cited is real. [Watch the full walkthrough, 1:53 (MP4)](docs/media/groundline-long.mp4).*
+
 ## Repo structure
 
 Four layers, each answering a different question:
@@ -102,6 +106,12 @@ No standalone setup guide is included in this package, this section is the walkt
 Create a Claude Project. Upload the reference files from `your-workspace/`, `rules/`, `templates/`, and `docs/skills-index.md` (Claude's Project knowledge is flat, folders don't carry over, grab each file regardless of which folder it sits in here). Zip and upload each folder in `skills/` under Settings. Add custom instructions telling Claude these files are the current source of truth for any competitive intelligence task, and to read `configuration.md` before touching Notion, Slack, or your CRM, never from memory.
 
 Then run "set up competitive intelligence system." The `ci-system-setup` skill runs two phases. **Phase 1** asks who your company is, your competitors by tier, your watch list topics, and your voice, only if `about-us.md`, `competitor-list.md`, and `watch-list.md` don't already have real content, skipped automatically otherwise. **Phase 2** checks for six Notion items (the home page, and five databases including Digest Actions), shows you the proposed shape for anything missing, and builds it once you confirm. Phase 2 is safe to re-run any time, Phase 1 only runs once.
+
+![Setup in fast-forward: fork the template, answer the setup questions, get the Notion hub](docs/media/groundline-setup.gif)
+
+Once setup is done, every competitor sits in one database, scored on two axes: threat (how much a move could hurt you) and tier (how close they are to what you sell).
+
+![The Competitor Profiles database in its Threat and Tier views, then one full competitor profile](docs/media/groundline-explore.gif)
 
 ## Keeping this current
 
